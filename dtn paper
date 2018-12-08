@@ -1,0 +1,67 @@
+
+
+
+
+
+A High Level Overview
+of
+Delay-Tolerant Networking RFC 4838
+
+
+By Victor Chimenti
+12/8/2018
+CPSC 5510 FQ18
+Seattle University
+
+
+ 
+
+Introduction
+
+December 7, 2018 is a day that will certainly live in infamy, not for any historical or political reasons, but for the giant leap all of human kind took when the NASA InSight Lander transmitted the first sound of Martian wind back to Earth.  This small step in the history of technology clearly displays an enormous success that has grown from decades of incremental advances in computer networks.
+Back on Earth we take for granted our TCP/IP protocols and the ease with which our data hops across a web of routers and switches. Always looking for the next-hop, these devices pass packets closer and closer to their final destination until presto, they arrive like magic. However, we know the details of our terrestrial internet and understand that magic has nothing to do with it. We have fiber, and a 5-Layer OSI Model to move data from end-point applications across the web, through physical layers and back up to the applications that crave it.
+This very effective system moves data through congested bottlenecks, provides for security, retransmits lost packets, and guarantees that our data moves from one end-point to another. Hidden in the success of this model however is the simple fact that things don’t always work. Packets do get lost and intruders do violate the sanctity of our data. So how do we solve these same problems when we may also have to account for a propagation delay that includes the 140 million miles between Earth and Mars?
+That is the story of Delay/Disruption Tolerant Networking (DTN); the art and science of a store and forward networking protocol that incorporates a new Bundle Layer tucked between the Application and Transport Layers and uses this new layer to overcome the vast and uncertain propagation hurdles awaiting in space. We will see that DTN takes the best of existing internet technology and combines it with peer-to-peer concepts before finally settling on a foundation created by snail-mail superpower; the US Postal Service.
+Certainly, there exists a giant leap from the Pony Express mail pouches of old to the InSight Application Data Unit (ADU) that arrived the other day. For CS students though, it is not a very long walk to see how we got here.
+ 
+Motivation
+Simply put, DTN applications send messages of arbitrary length using a store-and-forward system. These messages (ADUs) are transformed at the bundle layer into individual units of data called bundles. Bundles are formatted by at least two blocks of data; each block contains either the payload or protocol information much the same way an IP datagram uses its header/payload format.
+This seems easy, so why add the Bundle Layer? The answer has to do with the differences between the basic assumptions of network architectures. Internet protocols assume a consistent end-to-end path for the entire exchange. They assume that data loss is minimal and that a single route is sufficient. There is also a basic understanding that although the internet is a distributed system, all routers support the underlying TCP/IP protocols and that web enabled apps are designed to accept existing performance constraints. These assumptions have led to a belief that packet switching is the best choice.
+At this moment in time, those assumptions serve the modern internet well. The packet switched system is fast and reliable, and its security flaws are at least understood while reasonably mitigated. Yet there are many examples of network needs that cannot make these assumptions. Outer-Space notwithstanding, other earthbound needs also require a second take not served by the internet including IoT, autonomous vehicles/craft, remote/rural communities and underwater equipment to name a few. While these end-points cannot make the same assumptions our Transport and Network Layers make, they also wish to interact with them. Home security sensors must be accessible to control via web login, UAVs need route information from Google Map API and the Mars InSight needs to get its information back to Earth where Mission Control can Tweet it to the public.
+So, we have a need for an encapsulated system that relies on different assumptions while requiring the ability to assimilate with existing internet functionality. Should we build a whole new model, or develop a new layer that fits within our well-understood system? Our one small step that moves current network technology forward a single increment rather than inventing the wheel is DTN and the Bundle Layer.
+DTN understands that long messages and not streams or packets are a better abstraction for the conditions it faces. Although DTN uses hops from one DTN Node to the next much like IP hops between routers, DTN does not expect those nodes to always be available. Although IP is based on store-and-forward, it never expects anything more than a modest queuing and transmission delay. On the contrary, DTN expects that when an ADU arrives, that bundle will persist in its memory for a considerable time as it locates and calculates the next hop.
+This leads to the three basic assumptions of DTN: storage is available and well-distributed, storage is sufficient and robust, and that the store-and-forward model is better than continuous connectivity.
+With these assumptions arise a few basic obstacles. Congestion management must be handled differently. TCP uses ACKs to detect congestions, but long propagation times nullify the benefits of the ACK turnaround and timeouts. Also, any network that can be hacked will be hacked and the potential for denial-of-services attacks are just as certain in a DTN.
+ 
+
+
+
+
+How is it that we are able to translate this system into a space faring technology that does the same thing across a medium
+If you’ve ever lost a letter in the mail or dropped a cellphone call, you might appreciate the current state of networking.
+How is it that NASA is able to communicate effectively with devices scattered across the solar system? How are companies like SpaceX able to justify spending considerable sums launching a constellation of communication satellites?
+what results may grow from the imagination of dedicated network engineers. only hints of the enormous potential future networksDelay-Tolerant Networking  evolved from Satellite Considerations  and TCP Delay .
+
+
+to hold data in the queue longer than Unlike the internet, With potentially huge timescales and unknown paths DTN makes the trade-off
+
+What is the existing state-of-the-art? (i.e., How do things work if we don’t use this technology?)
+How is this an improvement over not using it? (or over using competing protocols/technologies?)
+Why is it important? Why does anyone care?
+
+ 
+Functioning
+What are its main capabilities?
+How does it work?
+How do its mechanisms/behaviors provide those capabilities?
+
+Analysis
+What are its advantages?
+What are its limitations, drawbacks, or tradeoffs?
+What are its flaws (if any)?
+
+Conclusions
+
+
+References
+Cerf, V. G. (2007, April). Request for Comments: 4838. Retrieved from The IETF Trust: https://tools.ietf.org/pdf/rfc4838.pdf
